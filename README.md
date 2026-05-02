@@ -1,10 +1,5 @@
 # GRC Vendor Risk Engine
 
-[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
-[![Go](https://img.shields.io/badge/Go-1.22+-00ADD8?style=flat-square&logo=go&logoColor=white)](https://go.dev)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16+-336791?style=flat-square&logo=postgresql&logoColor=white)](https://postgresql.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
-
 A **governance, risk, and compliance (GRC) vendor risk scoring platform** that automates third-party risk assessments using a multi-dimensional weighted scoring model. Designed for organizations operating under frameworks such as **NIST CSF 2.0**, **ISO 27001:2022**, and **NDPA** (Nigeria Data Protection Act) or **Kenya DPA** — particularly relevant in extraterritorial data processing contexts.
 
 ---

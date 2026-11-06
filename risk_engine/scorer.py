@@ -85,9 +85,10 @@ RESILIENCE_CRITERIA: list[Criterion] = [
 ]
 
 COMPLIANCE_CRITERIA: list[Criterion] = [
-    Criterion("iso27001",          weight=0.50, critical=False),
-    Criterion("soc2_type2",        weight=0.30, critical=False),
+    Criterion("iso27001",          weight=0.40, critical=False),
+    Criterion("soc2_type2",        weight=0.25, critical=False),
     Criterion("gdpr_adequate",     weight=0.20, critical=False),
+    Criterion("pci_dss",           weight=0.15, critical=False),
 ]
 
 FINANCIAL_CRITERIA: list[Criterion] = [
@@ -196,6 +197,7 @@ class VendorRiskScorer:
             "iso27001":     bool(payload.get("iso27001", False)),
             "soc2_type2":   bool(payload.get("soc2_type2", False)),
             "gdpr_adequate": bool(payload.get("gdpr_adequate", False)),
+            "pci_dss":      bool(payload.get("pci_dss", False)),
         }
 
     def _normalize_financial(self, payload: dict) -> dict[str, bool]:

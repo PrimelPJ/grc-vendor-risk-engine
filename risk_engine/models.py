@@ -111,6 +111,10 @@ class ComplianceProfile(BaseModel):
         default=False,
         description="Vendor operates from GDPR-adequate jurisdiction or has BCRs.",
     )
+    pci_dss: bool = Field(
+        default=False,
+        description="PCI DSS Level 1 or Level 2 attestation of compliance current.",
+    )
 
 
 class FinancialProfile(BaseModel):

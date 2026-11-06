@@ -29,9 +29,10 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 class RiskBand(str, Enum):
-    LOW    = "LOW"
-    MEDIUM = "MEDIUM"
-    HIGH   = "HIGH"
+    LOW      = "LOW"
+    MEDIUM   = "MEDIUM"
+    HIGH     = "HIGH"
+    CRITICAL = "CRITICAL"
 
 
 # ---------------------------------------------------------------------------
@@ -210,7 +211,9 @@ class VendorRiskScorer:
             return RiskBand.LOW
         if score >= 50:
             return RiskBand.MEDIUM
-        return RiskBand.HIGH
+        if score >= 25:
+            return RiskBand.HIGH
+        return RiskBand.CRITICAL
 
     def score(self, vendor_id: str, assessment_payload: dict) -> dict:
         """

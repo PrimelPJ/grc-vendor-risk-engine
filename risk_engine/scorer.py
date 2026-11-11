@@ -105,6 +105,10 @@ DIMENSION_CRITERIA: dict[str, list[Criterion]] = {
     "financial":  FINANCIAL_CRITERIA,
 }
 
+# Threshold constants used by the normalizer methods
+MIN_YEARS_OPERATING: int = 3   # Minimum years for a vendor to pass the financial stability check
+MAX_VULN_SLA_DAYS:   int = 30  # Maximum acceptable critical vulnerability remediation SLA
+
 
 # ---------------------------------------------------------------------------
 # Score computation
@@ -170,7 +174,7 @@ class VendorRiskScorer:
         return {
             "mfa_enforced":    bool(payload.get("mfa_enforced", False)),
             "pen_tested":      bool(payload.get("pen_tested", False)),
-            "vuln_sla_met":    vuln_sla_days <= 30,
+            "vuln_sla_met":    vuln_sla_days <= MAX_VULN_SLA_DAYS,
             "siem_deployed":   bool(payload.get("siem_deployed", False)),
             "zero_trust_arch": bool(payload.get("zero_trust_arch", False)),
         }
@@ -203,7 +207,7 @@ class VendorRiskScorer:
     def _normalize_financial(self, payload: dict) -> dict[str, bool]:
         years = payload.get("years_operating", 0)
         return {
-            "years_adequate":   years >= 3,
+            "years_adequate":   years >= MIN_YEARS_OPERATING,
             "publicly_traded":  bool(payload.get("public_company", False)),
             "no_public_breach": not bool(payload.get("public_breach_history", False)),
         }

@@ -108,6 +108,8 @@ DIMENSION_CRITERIA: dict[str, list[Criterion]] = {
 # Threshold constants used by the normalizer methods
 MIN_YEARS_OPERATING: int = 3   # Minimum years for a vendor to pass the financial stability check
 MAX_VULN_SLA_DAYS:   int = 30  # Maximum acceptable critical vulnerability remediation SLA
+MAX_RTO_HOURS:       int = 8   # Maximum acceptable Recovery Time Objective in hours
+MAX_RPO_HOURS:       int = 4   # Maximum acceptable Recovery Point Objective in hours
 
 
 # ---------------------------------------------------------------------------
@@ -191,8 +193,8 @@ class VendorRiskScorer:
         rto_hours = payload.get("rto_hours", 999)
         rpo_hours = payload.get("rpo_hours", 999)
         return {
-            "rto_acceptable": rto_hours <= 8,
-            "rpo_acceptable": rpo_hours <= 4,
+            "rto_acceptable": rto_hours <= MAX_RTO_HOURS,
+            "rpo_acceptable": rpo_hours <= MAX_RPO_HOURS,
             "dr_tested":      bool(payload.get("dr_tested", False)),
         }
 

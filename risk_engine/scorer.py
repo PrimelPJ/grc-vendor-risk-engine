@@ -110,6 +110,7 @@ MIN_YEARS_OPERATING: int = 3   # Minimum years for a vendor to pass the financia
 MAX_VULN_SLA_DAYS:   int = 30  # Maximum acceptable critical vulnerability remediation SLA
 MAX_RTO_HOURS:       int = 8   # Maximum acceptable Recovery Time Objective in hours
 MAX_RPO_HOURS:       int = 4   # Maximum acceptable Recovery Point Objective in hours
+MAX_GRPC_WORKERS:    int = 10  # Default thread-pool size for the gRPC server executor
 
 
 # ---------------------------------------------------------------------------
@@ -302,7 +303,7 @@ class RiskScoringServicer:
 
 
 def serve(port: int = 50051) -> None:
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=8))
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=MAX_GRPC_WORKERS))
     # risk_pb2_grpc.add_RiskScoringServicer_to_server(RiskScoringServicer(), server)
     server.add_insecure_port(f"[::]:{port}")
     server.start()

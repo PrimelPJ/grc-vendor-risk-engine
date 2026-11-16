@@ -115,6 +115,10 @@ class ComplianceProfile(BaseModel):
         default=False,
         description="PCI DSS Level 1 or Level 2 attestation of compliance current.",
     )
+    hipaa_compliant: bool = Field(
+        default=False,
+        description="HIPAA Security Rule attestation current; required for healthcare-adjacent vendors.",
+    )
 
 
 class FinancialProfile(BaseModel):

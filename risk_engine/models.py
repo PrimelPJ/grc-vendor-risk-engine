@@ -119,6 +119,10 @@ class ComplianceProfile(BaseModel):
         default=False,
         description="HIPAA Security Rule attestation current; required for healthcare-adjacent vendors.",
     )
+    fedramp_authorized: bool = Field(
+        default=False,
+        description="FedRAMP Moderate or High authorization current; required for US federal agency vendors.",
+    )
 
 
 class FinancialProfile(BaseModel):

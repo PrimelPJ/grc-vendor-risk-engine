@@ -85,12 +85,13 @@ RESILIENCE_CRITERIA: list[Criterion] = [
 ]
 
 COMPLIANCE_CRITERIA: list[Criterion] = [
-    Criterion("iso27001",           weight=0.30, critical=False),
-    Criterion("soc2_type2",         weight=0.25, critical=False),
-    Criterion("gdpr_adequate",      weight=0.20, critical=False),
-    Criterion("pci_dss",            weight=0.10, critical=False),
-    Criterion("hipaa_compliant",    weight=0.08, critical=False),
-    Criterion("fedramp_authorized", weight=0.07, critical=False),
+    Criterion("iso27001",              weight=0.30, critical=False),
+    Criterion("soc2_type2",            weight=0.25, critical=False),
+    Criterion("gdpr_adequate",         weight=0.20, critical=False),
+    Criterion("pci_dss",               weight=0.10, critical=False),
+    Criterion("hipaa_compliant",       weight=0.08, critical=False),
+    Criterion("fedramp_authorized",    weight=0.07, critical=False),
+    Criterion("supply_chain_assessed", weight=0.08, critical=False),
 ]
 
 FINANCIAL_CRITERIA: list[Criterion] = [
@@ -203,12 +204,13 @@ class VendorRiskScorer:
 
     def _normalize_compliance(self, payload: dict) -> dict[str, bool]:
         return {
-            "iso27001":           bool(payload.get("iso27001", False)),
-            "soc2_type2":         bool(payload.get("soc2_type2", False)),
-            "gdpr_adequate":      bool(payload.get("gdpr_adequate", False)),
-            "pci_dss":            bool(payload.get("pci_dss", False)),
-            "hipaa_compliant":    bool(payload.get("hipaa_compliant", False)),
-            "fedramp_authorized": bool(payload.get("fedramp_authorized", False)),
+            "iso27001":              bool(payload.get("iso27001", False)),
+            "soc2_type2":            bool(payload.get("soc2_type2", False)),
+            "gdpr_adequate":         bool(payload.get("gdpr_adequate", False)),
+            "pci_dss":               bool(payload.get("pci_dss", False)),
+            "hipaa_compliant":       bool(payload.get("hipaa_compliant", False)),
+            "fedramp_authorized":    bool(payload.get("fedramp_authorized", False)),
+            "supply_chain_assessed": bool(payload.get("supply_chain_assessed", False)),
         }
 
     def _normalize_financial(self, payload: dict) -> dict[str, bool]:

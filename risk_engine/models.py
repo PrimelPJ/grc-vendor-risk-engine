@@ -123,6 +123,10 @@ class ComplianceProfile(BaseModel):
         default=False,
         description="FedRAMP Moderate or High authorization current; required for US federal agency vendors.",
     )
+    supply_chain_assessed: bool = Field(
+        default=False,
+        description="Vendor has completed a formal third-party supply chain risk assessment.",
+    )
 
 
 class FinancialProfile(BaseModel):

@@ -99,6 +99,10 @@ class ResilienceProfile(BaseModel):
 
 class ComplianceProfile(BaseModel):
     """Tracks third-party certification and regulatory attestation status."""
+    nist_csf_tier: Annotated[int, Field(ge=0, le=4)] = Field(
+        default=0,
+        description="NIST CSF 2.0 maturity tier: 0=Not Assessed, 1=Partial, 2=Risk-Informed, 3=Repeatable, 4=Adaptive.",
+    )
     iso27001: bool = Field(
         default=False,
         description="ISO/IEC 27001:2022 certification current and in scope.",
